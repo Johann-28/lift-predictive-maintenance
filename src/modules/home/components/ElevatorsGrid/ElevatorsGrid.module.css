@@ -1,0 +1,193 @@
+/* ElevatorsGrid.css */
+.elevators-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
+}
+
+.elevators-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.elevators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.elevator-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.elevator-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #4a90e2;
+}
+
+.elevator-card:active {
+  transform: translateY(0);
+}
+
+.elevator-id {
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.elevator-status-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.circular-progress {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.elevator-location {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.elevator-maintenance {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* Elevator More Card */
+.elevator-more {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border: 2px dashed #cbd5e1;
+  min-height: 160px;
+}
+
+.elevator-more:hover {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  border-color: #4a90e2;
+}
+
+.elevator-more .elevator-id {
+  color: #64748b;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.more-count {
+  color: #4a90e2;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 8px 0;
+  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.more-text {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Status Colors for Progress Circles */
+.elevator-card .circular-progress circle:last-child {
+  transition: stroke 0.3s ease;
+}
+
+/* Animations */
+@keyframes elevatorPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.elevator-card:hover .circular-progress {
+  animation: elevatorPulse 0.6s ease-in-out;
+}
+
+/* Loading State */
+.elevator-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.elevator-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #e2e8f0;
+  border-top: 2px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .elevators-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  
+  .elevator-card {
+    padding: 12px;
+  }
+  
+  .more-count {
+    font-size: 24px;
+  }
+  
+  .elevator-more {
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .elevators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .elevator-id {
+    font-size: 12px;
+  }
+  
+  .elevator-location {
+    font-size: 11px;
+  }
+  
+  .elevator-maintenance {
+    font-size: 10px;
+  }
+}
